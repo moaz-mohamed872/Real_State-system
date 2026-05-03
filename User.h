@@ -1,0 +1,10 @@
+#ifndef REAL_STATE_SYSTEM_USER_H
+#define REAL_STATE_SYSTEM_USER_H
+
+
+class User
+{
+};
+
+
+#endif //REAL_STATE_SYSTEM_USER_H
