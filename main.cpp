@@ -7,10 +7,12 @@
 
 using namespace std;
 
+unordered_map<string, User> user_data;
+unordered_map<int, Listing> listing_data;
+
 int main()
 {
-    unordered_map<string, User> user_data;
-    unordered_map<int, Listing> listing_data;
+
 
     return 0;
 }
