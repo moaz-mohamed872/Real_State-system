@@ -1,6 +1,16 @@
 #include <iostream>
+#include <unordered_map>
+#include "User.h"
+#include "Listings.h"
+
+#include "menues.cpp"
+
+using namespace std;
 
 int main()
 {
+    unordered_map<string, User> user_data;
+    unordered_map<int, Listing> listing_data;
+
     return 0;
 }
