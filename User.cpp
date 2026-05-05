@@ -7,7 +7,7 @@ User::User() {
     password = 0;
     listingIds = {0};
 }
-User::User( std::string user_name,  std::string ame, int phone_number, int password,
+User::User( std::string user_name,  std::string name, int phone_number, int password,
     const std::list<int> &listing_ids)
     : userName(user_name),
       name(name),
