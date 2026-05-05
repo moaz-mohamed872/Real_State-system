@@ -47,10 +47,193 @@ void User::setPassword(int password) {
     this->password = password;
 }
 
-std::list<int> User::getListingIds() {
+list<int> User::getListingIds() {
     return listingIds;
 }
 
 void User::set_listing_ids(std::list<int> listing_ids) {
     listingIds = listing_ids;
 }
+
+static string User::log_in_newUser(
+unordered_map<string, User> &user_data) {
+    User user ;
+    string user_name ;
+    cout << "Enter user name: ";
+    cin >> user_name;
+    cout <<"\n";
+    if (user_data.count(user_name)) {
+        cout << "The user already exists!" << endl ;
+        cout <<"1) sing in " <<endl ;
+        cout <<"2) Try again " << endl;
+        string input;
+        cin >> input ;
+        if (input == "1") {
+           string name =  User.sign_in();
+            return name;
+        }
+        else {
+            return log_in_newUser(user_data);
+        }
+    }
+    else {
+        string name;
+        cout << "Enter name: ";
+        cin >> name;
+        cout <<"\n";
+        int password;
+        cout << "Enter Password: ";
+        cin >> password;
+        cout <<"\n";
+        int phone_number;
+        cout << "Enter phone number: ";
+        cin >> phone_number;
+        cout <<"\n";
+        list<int> listingIds = {};
+        user[user_name] = User(user_name, name, phone_number, password, listingIds);
+        cout << "\n" <<"<< Add new User successful >>" ;
+        return user_name;
+    }
+
+}
+
+static string User::sign_in(unordered_map<string, User> &user_data) {
+    string user_name ;
+    cout << "Enter user name: ";
+    cin >> user_name;
+    cout <<"\n";
+    int password;
+    cout << "Enter Password: ";
+    cin >> password;
+    cout <<"\n";
+    if (user_data.count(user_name) and user_data[user_name].getPassword() == password) {
+        cout <<"<< Sing in successful >>" ;
+        return user_name;
+    }
+    else {
+        cout <<"<< Sing in failed >>" ;
+        return sign_in(user_data) ;
+    }
+
+}
+
+void User:: user_edit_profile(unordered_map<string, User> &user_data) {
+ while (true) {
+     cout <<"Edit profile : " << endl ;
+     cout <<"1) edit name"<<endl ;
+     cout <<"2) edit phone number"<<endl ;
+     cout <<"3) edit password"<<endl ;
+     cout <<"4) Back " <<endl ;
+
+     string user_name ;
+     cin >> user_name ;
+     if (user_data.count(user_name)) {
+         cout << "The user already exists!" << endl ;
+         cout << "Choice edit : "
+             string input;
+             cin >> input ;
+             if (input == "1") {
+                 string name ;
+                 cin >> name ;
+                user_data[user_name].setUserName(name);
+
+             }
+             else if (input == "2") {
+                int phone_number;
+                 cin >> phone_number ;
+                 user_data[user_name].setPhoneNumber(phone_number);
+
+             }
+             else if (input == "3") {
+                int password;
+                 cin >> password ;
+                 user_data[user_name].setPassword(password);
+
+             }
+             else {
+                 break;
+             }
+
+     }
+     else {
+        cout <<"Invalid Usernamr !!" << endl ;
+         user_edit_profile(user_data);
+     }
+
+ }
+
+}
+
+void User::add_newListing(unordered_map<int, Listing> &listing_data) {
+
+        int id_listing;
+        cout << "Enter listing id: ";
+        cin >> id_listing;
+        cout << "\n";
+
+        string user_name ;
+        cout << "Enter user name: ";
+        cin >> user_name ;
+        cout <<"\n";
+
+        float price;
+        cout << "Enter price: ";
+        cin >> price ;
+        cout <<"\n";
+
+        string location;
+        cout << "Enter location: ";
+        cin >> location ;
+        cout <<"\n";
+
+        float size ;
+        cout << "Enter size: ";
+        cin >> size ;
+
+
+        int num_of_bedrooms;
+        cout << "Enter number of bedrooms: ";
+        cin >> num_of_bedrooms ;
+
+
+        bool sold ;
+        cout << "Enter type sold : ";
+        cin >> sold ;
+
+       Listing new_listing(id_listing, user_name, price, location, num_of_bedrooms, sold) ;
+
+        listing_data[new_listing.getId()] = new_listing;
+
+}
+void User::remove_Listing(unordered_map<int, Listing> &listing_data) {
+
+    for (auto it : listingIds) {
+        cout << it << endl;
+        cout <<"\t Price : "<< listing_data[it].getPrice()<<" ||  Location : " << listing_data[it].getLocation()<<" || Size : " <<listing_data[it].getSize() <<endl ;
+    }
+    cout <<"---------------------------------------------------";
+
+    while (true) {
+        cout <<"Remove listing id: ";
+        int id_listing;
+        cin >> id_listing;
+        if (this->listingIds.count(id_listing)) {
+            listing_data.erase(id_listing);
+            listingIds.erase(id_listing);
+            cout << "Listing removed successfully\n";
+            cout <<"If you Remove again ? Y : N " ;
+            string input;
+            cin >> input ;
+            if (input == "n" or input == "N") {
+                break;
+            }
+        }
+        else {
+            cout <<"Listing not found\n";
+        }
+
+    }
+
+}
+
+
