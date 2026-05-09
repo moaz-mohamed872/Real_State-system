@@ -36,5 +36,5 @@ public:
     static string sign_in(unordered_map<string, User> &user_data);
     void user_edit_profile(unordered_map<string, User> &user_data);
     void add_newListing(unordered_map<int, Listing> &listing_data);
-    void remove_Listing(unordered_map<int, Listing> &listing_data);
+    void remove_Listing(unordered_map<int, Listing> &listing_data, unordered_map<int, Listing>& sold_listings);
 };

@@ -213,7 +213,7 @@ void User::add_newListing(unordered_map<int, Listing> &listing_data) {
 
 }
 
-void User::remove_Listing(unordered_map<int, Listing> &listing_data) {
+void User::remove_Listing(unordered_map<int, Listing> &listing_data, unordered_map<int, Listing>& sold_listings) {
 
     for (auto it : listingIds) {
         cout << it << endl;
@@ -222,27 +222,36 @@ void User::remove_Listing(unordered_map<int, Listing> &listing_data) {
     cout <<"---------------------------------------------------";
 
     while (true) {
-        cout <<"Remove listing id: ";
+        cout <<"Choose the listing you want to remove: ";
         int id_listing;
         cin >> id_listing;
+
         list <int>::iterator it = this->find_id(id_listing);
+
         if (it != this->listingIds.end()) {
+
+            cout << "is this listing sold ? N:Y \n";
+            string input;
+            cin >> input;
+
+            if (input == "Y" || input == "y")
+            {
+                listing_data[id_listing].setIsSold(true);
+                sold_listings[id_listing] = listing_data[id_listing];
+            }
+
             listing_data.erase(id_listing);
+
             listingIds.erase(it);
             cout << "Listing removed successfully\n";
-            cout <<"Do you Remove again ? Y : N " ;
-            string input;
-            cin >> input ;
-            if (input == "n" or input == "N") {
-                break;
-            }
-        }
-        else {
-            cout <<"Listing not found\n";
-        }
 
+            cout <<"Do you Remove again ? Y : N " ;
+            cin >> input ;
+            if (input == "n" or input == "N")
+                break;
+        }
+        else
+            cout <<"Listing not found\n";
     }
 
 }
-
-

@@ -9,7 +9,7 @@
 using namespace std;
 
 unordered_map<string, User> user_data;
-unordered_map<int, Listing> listing_data;
+unordered_map<int, Listing> listing_data, sold_listings;
 
 int main()
 {
@@ -18,9 +18,9 @@ int main()
     string curr_username = start_system(user_data);
 
     while (curr_username == "admin")
-        admin_options(curr_username, user_data, listing_data);
+        admin_options(curr_username, user_data, listing_data, sold_listings);
     while (curr_username != "")
-        user_options(curr_username, user_data, listing_data);
+        user_options(curr_username, user_data, listing_data, sold_listings);
 
     return 0;
 }

@@ -14,7 +14,9 @@ string start_system(unordered_map<string, User> & user_data)
     return "";
 }
 
-void user_options(string &curr_username, unordered_map<string, User> & user_data, unordered_map<int, Listing> &listing_data)
+void user_options(string &curr_username, unordered_map<string, User> & user_data,
+    unordered_map<int, Listing> &listing_data,
+    unordered_map<int, Listing> &sold_listings)
 {
     string input = user_menue();
     User user = user_data[curr_username];
@@ -25,7 +27,7 @@ void user_options(string &curr_username, unordered_map<string, User> & user_data
     }
     else if (input == "2")
     {
-        user.remove_Listing(listing_data);
+        user.remove_Listing(listing_data, sold_listings);
     }
     else if (input == "3")
     {
@@ -39,7 +41,9 @@ void user_options(string &curr_username, unordered_map<string, User> & user_data
         curr_username = "";
 }
 
-void admin_options(string &curr_username, unordered_map<string, User> & user_data, unordered_map<int, Listing> &listing_data)
+void admin_options(string &curr_username, unordered_map<string, User> & user_data,
+    unordered_map<int, Listing> &listing_data,
+    unordered_map<int, Listing> &sold_listings)
 {
 
 }
