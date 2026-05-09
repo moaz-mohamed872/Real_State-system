@@ -13,7 +13,7 @@ class Listing {
 
 public:
     Listing();
-    Listing(int id,  std::string user_name, float price,  std::string location, float size,
+    Listing(std::string user_name, float price,  std::string location, float size,
             int num_of_bedrooms, bool sold);
 
     int getId();

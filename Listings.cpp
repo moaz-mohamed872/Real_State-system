@@ -1,8 +1,7 @@
 #include "Listings.h"
 
 Listing::Listing() {
-    id = 0;
-    idCounter++;
+    id = ++idCounter;
     userName = "";
     price = 0.0;
     location = "";
@@ -11,16 +10,16 @@ Listing::Listing() {
     Sold = false;
 
 }
-Listing::Listing(int id,  std::string user_name, float price, std::string location, float size,
+
+Listing::Listing(std::string user_name, float price, std::string location, float size,
     int num_of_bedrooms, bool sold)
-        : id(id),
-          userName(user_name),
+        : userName(user_name),
           price(price),
           location(location),
           size(size),
           numOfBedrooms(num_of_bedrooms),
           Sold(sold) {
-    idCounter++;
+    id = ++idCounter;
 }
 
 int Listing :: getId() {
