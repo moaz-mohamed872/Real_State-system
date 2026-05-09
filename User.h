@@ -10,7 +10,7 @@ class User {
     string userName;
     string name;
     int phoneNumber;
-    int password;
+    string password;
     list<int> listingIds;
 
     list <int>::iterator find_id(int);
@@ -18,17 +18,17 @@ class User {
 public:
 
     User();
-    User(string user_name, string ame, int phone_number, int password,
+    User(string user_name, string ame, int phone_number, string password,
     const list<int> &listing_ids);
 
     string getUserName();
-    void setUserName(string );
+    void setUserName(string);
     string getName();
     void setName(string);
     int getPhoneNumber();
     void setPhoneNumber(int);
-    int getPassword();
-    void setPassword(int password);
+    string getPassword();
+    void setPassword(string password);
     list<int> getListingIds();
     void set_listing_ids(list<int>);
 

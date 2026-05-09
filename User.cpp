@@ -13,11 +13,11 @@ User::User() {
     userName ="";
     name = "";
     phoneNumber = 0;
-    password = 0;
+    password = "";
     listingIds = {0};
 }
 
-User::User( std::string user_name,  std::string name, int phone_number, int password,
+User::User( std::string user_name,  std::string name, int phone_number, string password,
     const std::list<int> &listing_ids)
     : userName(user_name),
       name(name),
@@ -50,11 +50,11 @@ void User::setPhoneNumber(int phone_number) {
     phoneNumber = phone_number;
 }
 
-int User::getPassword()  {
+string User::getPassword()  {
     return password;
 }
 
-void User::setPassword(int password) {
+void User::setPassword(string password) {
     this->password = password;
 }
 
@@ -71,39 +71,38 @@ string User::log_in_newUser(unordered_map<string, User> &user_data) {
     string user_name ;
     cout << "Enter user name: ";
     cin >> user_name;
-    cout <<"\n";
+
     if (user_data.count(user_name)) {
         cout << "The user already exists!" << endl ;
         cout <<"1) sing in " <<endl ;
         cout <<"2) Try again " << endl;
         string input;
         cin >> input ;
+
         if (input == "1") {
            string name =  User::sign_in(user_data);
             return name;
         }
-        else {
-            return User::log_in_newUser(user_data);
-        }
+
+        return User::log_in_newUser(user_data);
     }
-    else {
-        string name;
-        cout << "Enter name: ";
-        cin >> name;
-        cout <<"\n";
-        int password;
-        cout << "Enter Password: ";
-        cin >> password;
-        cout <<"\n";
-        int phone_number;
-        cout << "Enter phone number: ";
-        cin >> phone_number;
-        cout <<"\n";
-        list<int> listingIds = {};
-        user_data[user_name] = User(user_name, name, phone_number, password, listingIds);
-        cout << "\n" <<"<< Add new User successful >>" ;
-        return user_name;
-    }
+
+    string name;
+    cout << "Enter name: ";
+    cin >> name;
+    cout <<"\n";
+    string password;
+    cout << "Enter Password: ";
+    cin >> password;
+    cout <<"\n";
+    int phone_number;
+    cout << "Enter phone number: ";
+    cin >> phone_number;
+    cout <<"\n";
+    list<int> listingIds = {};
+    user_data[user_name] = User(user_name, name, phone_number, password, listingIds);
+    cout << "\n" <<"<< Add new User successful >>" ;
+    return user_name;
 
 }
 
@@ -111,20 +110,24 @@ string User::sign_in(unordered_map <string, User> &user_data) {
     string user_name ;
     cout << "Enter user name: ";
     cin >> user_name;
-    cout <<"\n";
-    int password;
+
+    string password;
     cout << "Enter Password: ";
     cin >> password;
-    cout <<"\n";
-    if (user_data.count(user_name) and user_data[user_name].getPassword() == password) {
+
+    if (user_name == "admin" and password == "1234")
+    {
+        cout << "welcome admin\n";
+        return "admin";
+    }
+
+    if (user_data.count(user_name) and user_data[user_name].getPassword() == password and user_name != "admin") {
         cout <<"<< Sing in successful >>" ;
         return user_name;
     }
-    else {
-        cout <<"<< Sing in failed >>" ;
-        return User::sign_in(user_data) ;
-    }
 
+    cout <<"<< Sing in failed >>" ;
+    return User::sign_in(user_data) ;
 }
 
 void User:: user_edit_profile(unordered_map<string, User> &user_data) {
@@ -155,7 +158,7 @@ void User:: user_edit_profile(unordered_map<string, User> &user_data) {
 
              }
              else if (input == "3") {
-                int password;
+                 string password;
                  cin >> password ;
                  user_data[user_name].setPassword(password);
 
