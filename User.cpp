@@ -1,4 +1,13 @@
 #include "User.h"
+#include <unordered_map>
+
+list <int>::iterator User::find_id(int id)
+{
+    for (auto it = this->listingIds.begin(); it != this->listingIds.end(); it++)
+        if (id == *it)
+            return it;
+    return this->listingIds.end();
+}
 
 User::User() {
     userName ="";
@@ -7,6 +16,7 @@ User::User() {
     password = 0;
     listingIds = {0};
 }
+
 User::User( std::string user_name,  std::string name, int phone_number, int password,
     const std::list<int> &listing_ids)
     : userName(user_name),
@@ -15,6 +25,7 @@ User::User( std::string user_name,  std::string name, int phone_number, int pass
       password(password),
       listingIds(listing_ids) {
 }
+
 std::string User::getUserName()  {
     return userName;
 }
@@ -55,8 +66,7 @@ void User::set_listing_ids(std::list<int> listing_ids) {
     listingIds = listing_ids;
 }
 
-static string User::log_in_newUser(
-unordered_map<string, User> &user_data) {
+string User::log_in_newUser(unordered_map<string, User> &user_data) {
     User user ;
     string user_name ;
     cout << "Enter user name: ";
@@ -69,11 +79,11 @@ unordered_map<string, User> &user_data) {
         string input;
         cin >> input ;
         if (input == "1") {
-           string name =  User.sign_in();
+           string name =  User::sign_in(user_data);
             return name;
         }
         else {
-            return log_in_newUser(user_data);
+            return User::log_in_newUser(user_data);
         }
     }
     else {
@@ -90,14 +100,14 @@ unordered_map<string, User> &user_data) {
         cin >> phone_number;
         cout <<"\n";
         list<int> listingIds = {};
-        user[user_name] = User(user_name, name, phone_number, password, listingIds);
+        user_data[user_name] = User(user_name, name, phone_number, password, listingIds);
         cout << "\n" <<"<< Add new User successful >>" ;
         return user_name;
     }
 
 }
 
-static string User::sign_in(unordered_map<string, User> &user_data) {
+string User::sign_in(unordered_map <string, User> &user_data) {
     string user_name ;
     cout << "Enter user name: ";
     cin >> user_name;
@@ -112,7 +122,7 @@ static string User::sign_in(unordered_map<string, User> &user_data) {
     }
     else {
         cout <<"<< Sing in failed >>" ;
-        return sign_in(user_data) ;
+        return User::sign_in(user_data) ;
     }
 
 }
@@ -129,7 +139,7 @@ void User:: user_edit_profile(unordered_map<string, User> &user_data) {
      cin >> user_name ;
      if (user_data.count(user_name)) {
          cout << "The user already exists!" << endl ;
-         cout << "Choice edit : "
+         cout << "Choice edit : ";
              string input;
              cin >> input ;
              if (input == "1") {
@@ -161,15 +171,9 @@ void User:: user_edit_profile(unordered_map<string, User> &user_data) {
      }
 
  }
-
 }
 
 void User::add_newListing(unordered_map<int, Listing> &listing_data) {
-
-        int id_listing;
-        cout << "Enter listing id: ";
-        cin >> id_listing;
-        cout << "\n";
 
         string user_name ;
         cout << "Enter user name: ";
@@ -200,11 +204,12 @@ void User::add_newListing(unordered_map<int, Listing> &listing_data) {
         cout << "Enter type sold : ";
         cin >> sold ;
 
-       Listing new_listing(id_listing, user_name, price, location, num_of_bedrooms, sold) ;
+        Listing new_listing(user_name, price, location,size, num_of_bedrooms, sold);
 
         listing_data[new_listing.getId()] = new_listing;
 
 }
+
 void User::remove_Listing(unordered_map<int, Listing> &listing_data) {
 
     for (auto it : listingIds) {
@@ -217,11 +222,12 @@ void User::remove_Listing(unordered_map<int, Listing> &listing_data) {
         cout <<"Remove listing id: ";
         int id_listing;
         cin >> id_listing;
-        if (this->listingIds.count(id_listing)) {
+        list <int>::iterator it = this->find_id(id_listing);
+        if (it != this->listingIds.end()) {
             listing_data.erase(id_listing);
-            listingIds.erase(id_listing);
+            listingIds.erase(it);
             cout << "Listing removed successfully\n";
-            cout <<"If you Remove again ? Y : N " ;
+            cout <<"Do you Remove again ? Y : N " ;
             string input;
             cin >> input ;
             if (input == "n" or input == "N") {

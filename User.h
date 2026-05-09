@@ -1,7 +1,9 @@
 #pragma once
 #include <string>
+#include <unordered_map>
 #include <iostream>
 #include <list>
+#include "Listings.h"
 using namespace std;
 
 class User {
@@ -10,6 +12,8 @@ class User {
     int phoneNumber;
     int password;
     list<int> listingIds;
+
+    list <int>::iterator find_id(int);
 
 public:
 
@@ -31,6 +35,6 @@ public:
     static string log_in_newUser(unordered_map<string, User> &user_data);
     static string sign_in(unordered_map<string, User> &user_data);
     void user_edit_profile(unordered_map<string, User> &user_data);
-    void add_newListing();
-    void remove_Listing();
+    void add_newListing(unordered_map<int, Listing> &listing_data);
+    void remove_Listing(unordered_map<int, Listing> &listing_data);
 };
