@@ -1,15 +1,11 @@
 #include <iostream>
-#include "User.h"
 
 using namespace std;
 
-void greet_user()
+string start_menue()
 {
-    cout << "====== Welcome to Real-State portal ======\n\n";
-}
+    cout << "\t\t====== Welcome to Real-State portal ======\n\n";
 
-string start_menue(unordered_map<string, User> & user_data)
-{
     cout << "1) Create account\n"
         << "2) Sign in\n"
         << "3) Exit\n"
@@ -24,11 +20,57 @@ string start_menue(unordered_map<string, User> & user_data)
         cin >> input;
     }
 
-    if (input == "1")
-        return User::log_in_newUser(user_data);
+    return input;
+}
 
-    if (input == "2")
-        return User::sign_in(user_data);
+string admin_menue()
+{
+    cout << "\t------- manage listings -------\n"
+        << "1) Add listing\n"
+        << "2) Edit listings\n"
+        << "3) Remove listing\n";
 
-    return "";
+    cout << "\t------- manage users -------\n"
+        << "4) Add user\n"
+        << "5) Edit users\n"
+        << "6) Remove user\n";
+
+    cout << "\t------- manage system -------\n"
+        << "7) System reports\n"
+        << "8) Exit\n"
+        << "\n choose an option :";
+
+    string input;
+    cin >> input;
+
+    while (input != "1" and input != "2" and input != "3" and input != "4"
+        and input != "5" and input != "6" and input != "7" and input != "8")
+    {
+        cout << "invalid input ... try again\n";
+        cin >> input;
+    }
+
+    return input;
+}
+
+string user_menue()
+{
+    cout << "1) Add listing\n"
+       << "2) Remove listing\n"
+       << "3) Search for a listing\n"
+       << "4) Edit profile\n"
+       << "5) Exit\n"
+       << "\n choose an option :";
+
+    string input;
+    cin >> input;
+
+    while (input != "1" and input != "2" and input != "3"
+        and input != "4" and input != "5")
+    {
+        cout << "invalid input ... try again\n";
+        cin >> input;
+    }
+
+    return input;
 }
