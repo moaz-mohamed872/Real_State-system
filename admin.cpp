@@ -154,3 +154,49 @@ void editlist() {
         cout << "No list found";
     }
 }
+
+//======================================================
+// REPORTS
+
+int get_total_sales(char option = 'p')
+{
+    int sum = 0;
+    for (auto l : listing_data)
+    {
+        Listing lst = l.second;
+        if (lst.isSold())
+            sum += (option == 'p')? lst.getPrice() : 1;
+    }
+    return sum;
+}
+
+int get_price_avg()
+{
+    int sum = 0;
+    for (auto l : listing_data)
+    {
+        Listing lst = l.second;
+        sum += lst.getPrice();
+    }
+
+    if (listing_data.size() == 0)
+        return 0;
+
+    return sum/listing_data.size();
+}
+
+void reports()
+{
+    cout << "there is " << user_data.size() << "users\n";
+
+    cout << "there is " << listing_data.size() << "listings\n";
+
+    cout << "the average of listings' prices is " << get_price_avg() << "\n";
+
+    cout << "we sold " << get_total_sales('c') << "listings\n";
+
+    int tmp = get_total_sales();
+    cout << "with value of " << tmp << "$\n";
+
+    cout << "we made total of " << tmp*0.15 << "$\n";
+}
