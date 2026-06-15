@@ -1,10 +1,8 @@
 #include <unordered_map>
 #include "User.h"
 #include "Listings.h"
-
-#include "menues.cpp"
-#include "SystemFunctionalities.cpp"
-#include "fileSystem.cpp"
+#include "SystemFunctionalities.h"
+#include "fileSystem.h"
 
 using namespace std;
 

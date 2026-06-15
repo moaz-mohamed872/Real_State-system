@@ -11,4 +11,8 @@ add_executable(Real_State_system main.cpp
         Listings.h
         menues.cpp
         fileSystem.cpp
-        SystemFunctionalities.cpp)
+        SystemFunctionalities.cpp
+        admin.h
+        SystemFunctionalities.h
+        fileSystem.h
+        menues.h)

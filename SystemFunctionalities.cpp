@@ -1,5 +1,4 @@
-#include "menues.cpp"
-#include "admin.cpp"
+#include "SystemFunctionalities.h"
 
 string start_system(unordered_map<string, User> & user_data)
 {

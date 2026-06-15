@@ -1,5 +1,7 @@
 #include "Listings.h"
 
+int Listing::idCounter = 0;
+
 Listing::Listing() {
     id = ++idCounter;
     userName = "";
