@@ -130,19 +130,19 @@ int get_list_id() {
     return list_id;
 }
 
-void addlist(unordered_map<int, Listing> &listing_data) {
+void add_listing(unordered_map<int, Listing> &listing_data) {
     int listid = get_list_id();
     Listing new_list = get_listing_data();
     new_list.setId(listid);
     listing_data[listid] = new_list;
 }
 
-void deletlist(unordered_map<int, Listing> &listing_data) {
+void delete_listing(unordered_map<int, Listing> &listing_data) {
     int listid = get_list_id();
     listing_data.erase(listid);
 }
 
-void editlist(unordered_map<int, Listing> &listing_data) {
+void edit_listing(unordered_map<int, Listing> &listing_data) {
     int listid = get_list_id();
     if (listing_data.count(listid)) {
         Listing new_list = get_listing_data();

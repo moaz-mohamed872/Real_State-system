@@ -48,11 +48,11 @@ void admin_options(string &curr_username, unordered_map<string, User> & user_dat
     string input = admin_menue();
 
     if (input == "1")
-        addlist(listing_data);
+        add_listing(listing_data);
     else if (input == "2")
-        editlist(listing_data);
+        edit_listing(listing_data);
     else if (input == "3")
-        deletlist(listing_data);
+        delete_listing(listing_data);
     else if (input == "4")
         add_user(user_data);
     else if (input == "5")
