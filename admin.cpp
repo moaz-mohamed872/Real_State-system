@@ -2,8 +2,8 @@
 
 User get_user_data()
 {
-    string name;
-    int phone_number,password;
+    string name,password;
+    int phone_number;
     list<int> listing_ids;
     User user;
     cout << "Enter your name" << endl;
@@ -21,17 +21,17 @@ User get_user_data()
 
     cout << "Enter the number of listingIds" << endl;
     int number, id;
+    cin >> number;
     for (int i = 0; i < number; i++) {
         cin >> id;
         listing_ids.push_back(id);
     }
 
-    user.set_listing_ids(list<int> listing_ids);
+    user.set_listing_ids(listing_ids);
 
 
     return user;
 }
-
 
 string get_username()
 {
@@ -80,9 +80,6 @@ void edit_user()
     }
 }
 
-
-
-
 Listing get_listing_data() {
     int id , numOfBedrooms;
     float price, size;
@@ -119,43 +116,38 @@ Listing get_listing_data() {
     cout << "Are the listing is solid ?" << endl;
     cin >> is_sold;
     l.setIsSold(is_sold);
+
+    return l;
 }
 
-string get_list_name() {
+int get_list_id() {
     
-    string list_name;
+    int list_id;
 
-    cout << "Enter listing name" << endl;
-    cin >> list_name;
+    cout << "Enter listing id" << endl;
+    cin >> list_id;
 
-    return list_name;
+    return list_id;
 }
 
-   
 void addlist() {
-
-    string listname = get_list_name();
+    int listid = get_list_id();
     Listing new_list = get_listing_data();
-    new_list.setUserName(listname);
-    listing_data[listname] = new_list;
-
+    new_list.setId(listid);
+    listing_data[listid] = new_list;
 }
-
 
 void deletlist() {
-
-    string listname = get_list_name();
-    listing_data.erase(listname);
-
+    int listid = get_list_id();
+    listing_data.erase(listid);
 }
 
 void editlist() {
-    
-    string listname = get_list_name();
-    if (listing_data.count(listname)) {
+    int listid = get_list_id();
+    if (listing_data.count(listid)) {
         Listing new_list = get_listing_data();
-        new_list.setUserName(listname);
-        listing_data[listname] = new_list;
+        new_list.setId(listid);
+        listing_data[listid] = new_list;
     }
     else
     {
