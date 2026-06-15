@@ -1,5 +1,5 @@
 #include "menues.cpp"
-#include "User.h"
+#include "admin.cpp"
 
 string start_system(unordered_map<string, User> & user_data)
 {
@@ -45,6 +45,22 @@ void admin_options(string &curr_username, unordered_map<string, User> & user_dat
     unordered_map<int, Listing> &listing_data,
     unordered_map<int, Listing> &sold_listings)
 {
+    string input = admin_menue();
 
+    if (input == "1")
+        addlist(listing_data);
+    else if (input == "2")
+        editlist(listing_data);
+    else if (input == "3")
+        deletlist(listing_data);
+    else if (input == "4")
+        add_user(user_data);
+    else if (input == "5")
+        edit_user(user_data);
+    else if (input == "6")
+        delete_user(user_data);
+    else if (input == "7")
+        reports(user_data, listing_data, sold_listings);
+    else if (input == "8")
+        curr_username = "";
 }
-
