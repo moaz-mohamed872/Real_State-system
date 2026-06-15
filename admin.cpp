@@ -1,4 +1,4 @@
-#include "main.cpp"
+#include "User.h"
 
 User get_user_data()
 {
@@ -43,7 +43,7 @@ string get_username()
     return user_name;
 }
 
-void add_user()
+void add_user(unordered_map<string, User> & user_data)
 {
     string username = get_username();
     User new_user = get_user_data();
@@ -51,7 +51,7 @@ void add_user()
     user_data[username] = new_user;
 }
 
-void delete_user()
+void delete_user(unordered_map<string, User> & user_data)
 {
     string username = get_username();
    
@@ -66,7 +66,7 @@ void delete_user()
 
 }
 
-void edit_user()
+void edit_user(unordered_map<string, User> & user_data)
 {
     string username = get_username();
     if (user_data.count(username)){
@@ -130,19 +130,19 @@ int get_list_id() {
     return list_id;
 }
 
-void addlist() {
+void addlist(unordered_map<int, Listing> &listing_data) {
     int listid = get_list_id();
     Listing new_list = get_listing_data();
     new_list.setId(listid);
     listing_data[listid] = new_list;
 }
 
-void deletlist() {
+void deletlist(unordered_map<int, Listing> &listing_data) {
     int listid = get_list_id();
     listing_data.erase(listid);
 }
 
-void editlist() {
+void editlist(unordered_map<int, Listing> &listing_data) {
     int listid = get_list_id();
     if (listing_data.count(listid)) {
         Listing new_list = get_listing_data();
@@ -158,19 +158,16 @@ void editlist() {
 //======================================================
 // REPORTS
 
-int get_total_sales(char option = 'p')
+int get_total_sales(char option, unordered_map<int, Listing> sold_listings)
 {
     int sum = 0;
-    for (auto l : listing_data)
-    {
-        Listing lst = l.second;
-        if (lst.isSold())
-            sum += (option == 'p')? lst.getPrice() : 1;
-    }
+    for (auto l : sold_listings)
+        sum += (option == 'p')? l.second.getPrice() : 1;
+
     return sum;
 }
 
-int get_price_avg()
+int get_price_avg(unordered_map<int, Listing> &listing_data)
 {
     int sum = 0;
     for (auto l : listing_data)
@@ -185,17 +182,19 @@ int get_price_avg()
     return sum/listing_data.size();
 }
 
-void reports()
+void reports(unordered_map<string, User> & user_data,
+    unordered_map<int, Listing> &listing_data,
+    unordered_map<int, Listing> &sold_listings)
 {
     cout << "there is " << user_data.size() << "users\n";
 
     cout << "there is " << listing_data.size() << "listings\n";
 
-    cout << "the average of listings' prices is " << get_price_avg() << "\n";
+    cout << "the average of listings' prices is " << get_price_avg(listing_data) << "\n";
 
-    cout << "we sold " << get_total_sales('c') << "listings\n";
+    cout << "we sold " << get_total_sales('c', sold_listings) << "listings\n";
 
-    int tmp = get_total_sales();
+    int tmp = get_total_sales('p', sold_listings);
     cout << "with value of " << tmp << "$\n";
 
     cout << "we made total of " << tmp*0.15 << "$\n";
