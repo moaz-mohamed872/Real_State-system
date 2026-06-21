@@ -1,14 +1,16 @@
 #include "SystemFunctionalities.h"
 
+#include "UserFunctionalities.h"
+
 string start_system(unordered_map<string, User> & user_data)
 {
     string input = start_menue();
 
     if (input == "1")
-        return User::log_in_newUser(user_data);
+        return UserFunctionalities::log_in_newUser(user_data);
 
     if (input == "2")
-        return User::sign_in(user_data);
+        return UserFunctionalities::sign_in(user_data);
 
     return "";
 }
@@ -30,7 +32,7 @@ void user_options(string &curr_username, unordered_map<string, User> & user_data
     }
     else if (input == "3")
     {
-        //user.search_listing();
+        UserFunctionalities::search_listing(listing_data);
     }
     else if (input == "4")
     {
