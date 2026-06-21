@@ -32,8 +32,6 @@ public:
     list<int> getListingIds();
     void set_listing_ids(list<int>);
 
-    static string log_in_newUser(unordered_map<string, User> &user_data);
-    static string sign_in(unordered_map<string, User> &user_data);
     void user_edit_profile(unordered_map<string, User> &user_data);
     void add_newListing(unordered_map<int, Listing> &listing_data);
     void remove_Listing(unordered_map<int, Listing> &listing_data, unordered_map<int, Listing>& sold_listings);

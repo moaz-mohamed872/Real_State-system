@@ -1,6 +1,6 @@
 #include "Listings.h"
 
-int Listing::idCounter = 0;
+int Listing::idCounter = 1;
 
 Listing::Listing() {
     id = ++idCounter;
