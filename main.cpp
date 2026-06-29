@@ -24,6 +24,6 @@ int main()
         admin_options(curr_username, user_data, listing_data, sold_listings);
     while (curr_username != "")
         user_options(curr_username, user_data, listing_data, sold_listings);
-
+    save_data(user_data, listing_data);
     return 0;
 }
