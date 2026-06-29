@@ -82,3 +82,7 @@ void Listing:: setIsSold(bool is_sold) {
 int Listing:: getIdCounter() {
     return idCounter;
 }
+void Listing::setIdCounter(int value)
+{
+    idCounter = value;
+}
