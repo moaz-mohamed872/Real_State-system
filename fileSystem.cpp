@@ -1,12 +1,15 @@
 #include "fileSystem.h"
 #include <fstream>
 #include <sstream>
-
+#include <filesystem>
 using namespace std;
+
+const string DATA_PATH =
+        (filesystem::current_path().parent_path() / "data").string();
 
 void load_data(unordered_map<string, User> &user_data, unordered_map<int, Listing> &listing_data)
 {
-    ifstream usersFile("data/users.txt");
+    ifstream usersFile(DATA_PATH+"/users.txt");
     string line;
     while (getline(usersFile, line))
     {
@@ -40,7 +43,7 @@ void load_data(unordered_map<string, User> &user_data, unordered_map<int, Listin
     }
     usersFile.close();
     //------------------------\\//
-    ifstream listingFile("data/listings.txt");
+    ifstream listingFile(DATA_PATH+"/listings.txt");
 
     int mx = 0;
 
@@ -75,7 +78,7 @@ void load_data(unordered_map<string, User> &user_data, unordered_map<int, Listin
     }
     listingFile.close();
     //----------------\\//
-    ifstream meta("data/metadata.txt");
+    ifstream meta(DATA_PATH +"/metadata.txt");
     int counter;
     if (meta >> counter)
         Listing::setIdCounter(counter);
@@ -85,7 +88,7 @@ void load_data(unordered_map<string, User> &user_data, unordered_map<int, Listin
 }
 
 void save_data(unordered_map<string, User> &user_data, unordered_map<int, Listing> &listing_data) {
-    ofstream usersFile("data/users.txt");
+    ofstream usersFile(DATA_PATH +"/users.txt");
     for (auto p : user_data)
     {
         User user = p.second;
@@ -107,7 +110,7 @@ void save_data(unordered_map<string, User> &user_data, unordered_map<int, Listin
     }
     usersFile.close();
     //------------------------------------------------------------\\//
-    ofstream listingFile("data/listings.txt");
+    ofstream listingFile(DATA_PATH +"/listings.txt");
     for (auto p : listing_data)
     {
         Listing l = p.second;
@@ -123,7 +126,7 @@ void save_data(unordered_map<string, User> &user_data, unordered_map<int, Listin
     }
     listingFile.close();
     //-------------------------------\\//
-    ofstream meta("data/metadata.txt");
+    ofstream meta(DATA_PATH +"/metadata.txt");
     meta << Listing::getIdCounter();
     meta.close();
 }
