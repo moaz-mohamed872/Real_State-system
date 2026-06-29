@@ -12,6 +12,11 @@ unordered_map<int, Listing> listing_data, sold_listings;
 int main()
 {
     load_data(user_data, listing_data);
+    for (auto p : listing_data)
+    {
+        if (p.second.isSold())
+            sold_listings[p.first] = p.second;
+    }
 
     string curr_username = start_system(user_data);
 
