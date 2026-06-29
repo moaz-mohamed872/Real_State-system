@@ -74,6 +74,14 @@ void load_data(unordered_map<string, User> &user_data, unordered_map<int, Listin
         mx = max(mx, listingId);
     }
     listingFile.close();
+    //----------------\\//
+    ifstream meta("data/metadata.txt");
+    int counter;
+    if (meta >> counter)
+        Listing::setIdCounter(counter);
+    else
+        Listing::setIdCounter(mx);
+    meta.close();
 }
 
 void save_data(unordered_map<string, User> &user_data, unordered_map<int, Listing> &listing_data) {
@@ -114,4 +122,8 @@ void save_data(unordered_map<string, User> &user_data, unordered_map<int, Listin
                 << '\n';
     }
     listingFile.close();
+    //-------------------------------\\//
+    ofstream meta("data/metadata.txt");
+    meta << Listing::getIdCounter();
+    meta.close();
 }
