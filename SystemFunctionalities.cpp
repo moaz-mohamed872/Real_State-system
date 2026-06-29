@@ -20,7 +20,7 @@ void user_options(string &curr_username, unordered_map<string, User> & user_data
     unordered_map<int, Listing> &sold_listings)
 {
     string input = user_menue();
-    User user = user_data[curr_username];
+    User& user = user_data[curr_username];
 
     if (input == "1")
     {
