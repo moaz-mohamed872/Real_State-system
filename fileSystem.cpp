@@ -39,6 +39,41 @@ void load_data(unordered_map<string, User> &user_data, unordered_map<int, Listin
         user_data[username] = user;
     }
     usersFile.close();
+    //------------------------\\//
+    ifstream listingFile("data/listings.txt");
+
+    int mx = 0;
+
+    while (getline(listingFile, line))
+    {
+        stringstream ss(line);
+        string id;
+        string username;
+        string price;
+        string location;
+        string size;
+        string bedrooms;
+        string sold;
+        getline(ss, id, '|');
+        getline(ss, username, '|');
+        getline(ss, price, '|');
+        getline(ss, location, '|');
+        getline(ss, size, '|');
+        getline(ss, bedrooms, '|');
+        getline(ss, sold);
+        Listing l;
+        int listingId = stoi(id);
+        l.setId(listingId);
+        l.setUserName(username);
+        l.setPrice(stof(price));
+        l.setLocation(location);
+        l.setSize(stof(size));
+        l.setNumOfBedrooms(stoi(bedrooms));
+        l.setIsSold(stoi(sold));
+        listing_data[listingId] = l;
+        mx = max(mx, listingId);
+    }
+    listingFile.close();
 }
 
 void save_data(unordered_map<string, User> &user_data, unordered_map<int, Listing> &listing_data) {
