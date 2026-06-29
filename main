@@ -1,0 +1,38 @@
+[33m806ee11[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/file-persistence[m[33m)[m Integrate persistence layer when shutdown
+[33mf1e5c83[m Restore sold listings
+[33mb8c0483[m  listing id counter
+[33md9bf0a5[m Implement listings deserialization
+[33m8a3a0ff[m Implement listings serialization
+[33mbbe1a2b[m Implement users deserialization
+[33m5cbc014[m Implement users serialization
+[33mdb3bed8[m Fix user object copy in userfun
+[33m1a78ff1[m Add setter for listing id counter
+[33mb6b4281[m add files
+[33mc0a03bc[m Create files
+[33m3834ae7[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m linked system and user functionalities
+[33m355ddc0[m added search
+[33mdcb72d4[m added header files
+[33m401f91f[m fixed function names
+[33m52f22ef[m added admin options
+[33ma24cb5e[m made independent
+[33md8d0326[m added reports
+[33mfe60cc8[m fixed admin errors
+[33mead2eb6[m Fixed editlist function
+[33m5c1e7af[m added sold_listings
+[33m0e89629[m added user menue
+[33me590de7[m added admin sign_in
+[33mf76499a[m added admin sign_in
+[33ma179cdc[m fixed user functions
+[33mfdde4f9[m fixed id counter
+[33mb63a5c9[m Merge branch 'main' of https://github.com/moaz-mohamed872/Real_State-system
+[33me49d8eb[m User Options
+[33m2881d4d[m added fixed header files
+[33m4e1e503[m added data containers
+[33m832185a[m added admin user control
+[33m366f222[m added fileSystem.cpp
+[33m79dc0c4[m fixed user constructor
+[33m8c370cd[m added listing
+[33mffd58c3[m added user
+[33md8a934c[m[33m ([m[1;31morigin/user-&-listings[m[33m, [m[1;31morigin/system-functionalities[m[33m, [m[1;31morigin/admin[m[33m)[m Merge branch 'main' of https://github.com/moaz-mohamed872/Real_State-system
+[33m85beb1b[m Initial commit
+[33mbe804c9[m initial commit

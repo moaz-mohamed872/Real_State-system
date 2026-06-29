@@ -31,4 +31,5 @@ public:
     void setNumOfBedrooms(int num_of_bedrooms);
     void setIsSold(bool is_sold);
     static int getIdCounter();
+    static void setIdCounter(int);
 };
