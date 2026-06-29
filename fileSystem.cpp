@@ -63,4 +63,20 @@ void save_data(unordered_map<string, User> &user_data, unordered_map<int, Listin
         usersFile << '\n';
     }
     usersFile.close();
+    //------------------------------------------------------------\\//
+    ofstream listingFile("data/listings.txt");
+    for (auto p : listing_data)
+    {
+        Listing l = p.second;
+        listingFile
+                << l.getId() << '|'
+                << l.getUserName() << '|'
+                << l.getPrice() << '|'
+                << l.getLocation() << '|'
+                << l.getSize() << '|'
+                << l.getNumOfBedrooms() << '|'
+                << l.isSold()
+                << '\n';
+    }
+    listingFile.close();
 }
